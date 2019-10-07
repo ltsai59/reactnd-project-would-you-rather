@@ -3,8 +3,6 @@ import {connect} from "react-redux"
 import {setAuthedUser} from '../actions/authedUser'
 import {Redirect} from 'react-router-dom'
 
-// import Select from 'react-select'
-
 class Login extends Component {
     state = {
         selectedOption: 'select',
@@ -17,24 +15,7 @@ class Login extends Component {
             {selectedOption}
         );
     };
-    // handleChange = selectedOption => {
-    //     this.setState(
-    //         { selectedOption },
-    //         () => console.log(`Option selected:`, this.state.selectedOption)
-    //     );
-    // };
-    // handleLogin = (e) => {
-    //     e.preventDefault()
-    //     const { dispatch } = this.props
-    //     const { selectedOption } = this.state
-    //     if (selectedOption !== "select") {
-    //         dispatch(setAuthedUser(selectedOption.value))
-    //         this.setState(() => ({
-    //             selectedOption: 'select',
-    //             toHome:  true,
-    //         }))
-    //     }
-    // }
+
     handleLogin = (e) => {
         e.preventDefault()
         const {dispatch} = this.props
@@ -62,12 +43,6 @@ class Login extends Component {
                 </div>
                 <div className='container'>
                     <p>Please select a user to continue:</p>
-                    {/*<Select*/}
-                    {/*autoFocus={true}*/}
-                    {/*value={selectedOption}*/}
-                    {/*onChange={this.handleChange}*/}
-                    {/*options={options}*/}
-                    {/*/>*/}
                     <select className='select' onChange={this.handleChange} value={selectedOption}>
                         <option key='select' value='select'>--Select--</option>
                         {options.map((option) => (

@@ -11,7 +11,6 @@ class Question extends Component {
     }
     handleChange = (e) => {
         const selectedValue = e.target.value
-        console.log(selectedValue);
         this.setState({
             selectedValue: selectedValue
         })

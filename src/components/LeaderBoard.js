@@ -6,7 +6,6 @@ class LeaderBoard extends Component {
     render() {
         const {sortedUserIds} = this.props
         const winnerId = (sortedUserIds.length > 0) ? sortedUserIds[0] : "";
-        console.log(sortedUserIds);
         return (
             <div className='board-container'>
                 <h3 className='center'>Score Board</h3>
@@ -23,20 +22,12 @@ class LeaderBoard extends Component {
 }
 
 function mapStateToProps({users}) {
-    // const userWithScore = Object.keys(users).map(user => {
-    //     return {
-    //         user: user,
-    //         score: Object.keys(users[user].answers).length + Object.keys(users[user].questions).length
-    //     }
-    // })
-    // const sortedIds = Object.keys(userWithScore).sort((a, b) => userWithScore[b].score - userWithScore[a].score)
-    // const sortedUserIds = sortedIds.map(id => userWithScore[id].user)
-
     // This obtains user with score list
     const scoreList = (() => {
         let usersWithScore = {}
+        let withScore
         for (let user in users) {
-            let withScore = {
+            withScore = {
                 [user]: {
                     score: Object.keys(users[user].answers).length + Object.keys(users[user].questions).length
                 }
