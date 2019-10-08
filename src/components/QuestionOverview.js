@@ -3,9 +3,7 @@ import {connect} from 'react-redux'
 import {formatQuestionOverview} from "../utilis/helpers"
 import {Link, withRouter} from 'react-router-dom'
 
-const QuestionOverview = (props) => {
-    const {question, id, answered} = props;
-
+const QuestionOverview = ({question, id, answered}) => {
     if (question === null) {
         return <p>This Question doesn't exist</p>
     }

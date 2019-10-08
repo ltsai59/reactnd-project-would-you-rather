@@ -2,8 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import UserScore from "./UserScore"
 
-const LeaderBoard = (props) => {
-    const {sortedUserIds} = props
+const LeaderBoard = ({sortedUserIds}) => {
     const winnerId = (sortedUserIds.length > 0) ? sortedUserIds[0] : "";
     return (
         <div className='board-container'>

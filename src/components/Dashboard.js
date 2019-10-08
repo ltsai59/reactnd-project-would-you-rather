@@ -4,14 +4,13 @@ import {Tab, Tabs, TabList, TabPanel} from 'react-tabs'
 import "react-tabs/style/react-tabs.css";
 import QuestionOverview from './QuestionOverview'
 
-const Dashboard = (props) => {
+const Dashboard = ({AnsweredQuestionIds, UnAnsweredQuestionIds}) => {
     const pStyle = {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'left'
     };
-    const {AnsweredQuestionIds, UnAnsweredQuestionIds} = props
 
     return (
         <div>
