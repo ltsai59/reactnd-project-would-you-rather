@@ -43,7 +43,7 @@ class Login extends Component {
                 </div>
                 <div className='container'>
                     <p>Please select a user to continue:</p>
-                    <select className='select' onChange={this.handleChange} value={selectedOption}>
+                    <select autoFocus className='select' onChange={this.handleChange} value={selectedOption}>
                         <option key='select' value='select'>--Select--</option>
                         {options.map((option) => (
                             <option className='option' key={option.value} value={option.value}>

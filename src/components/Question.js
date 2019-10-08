@@ -74,7 +74,7 @@ class Question extends Component {
                             <form className='new-question' onSubmit={this.handleSubmit}>
                                 <p>Would you Rather ... </p>
                                 <div>
-                                    <input type='radio' name='option' value='optionOne'
+                                    <input type='radio' name='option' value='optionOne' autoFocus
                                            checked={selectedValue === 'optionOne'} onChange={this.handleChange}/>
                                     <label htmlFor='option1'>{option1}</label>
                                 </div>
