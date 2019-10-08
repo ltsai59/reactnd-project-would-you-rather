@@ -1,50 +1,48 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
+import {connect} from 'react-redux'
 import {formatQuestionOverview} from "../utilis/helpers"
-import { Link, withRouter } from 'react-router-dom'
-class QuestionOverview extends Component {
+import {Link, withRouter} from 'react-router-dom'
 
-    render() {
-        const { question, id, answered} = this.props
+const QuestionOverview = (props) => {
+    const {question, id, answered} = props;
 
-        if (question === null) {
-            return <p>This Question doesn't exist</p>
-        }
+    if (question === null) {
+        return <p>This Question doesn't exist</p>
+    }
 
-        const { author, avatar, option1} = question
-        let addition = 's'
-        if (answered === 'Y') {
-            addition = 'ed'
-        }
+    const {author, avatar, option1} = question
 
-        return (
-            <div className='question-overview'>
-                <div className='question-header'>{author} ask{addition}</div>
-                <div className='question-container'>
-                    <img
-                        src={avatar}
-                        alt={`Avatar of ${author}`}
-                        className='avatar-question'
-                    />
-                    <div className='vertical-line'>
-                    </div>
-                    <div className='question-info'>
-                        <p><b>Would you rather</b></p>
-                        <p>{option1}</p>
-                        <Link to={`/question/${id}`}
-                              className='btn'>
-                            View Poll
-                        </Link>
-                    </div>
+    let addition = 's'
+    if (answered === 'Y') {
+        addition = 'ed'
+    }
+
+    return (
+        <div className='question-overview'>
+            <div className='question-header'>{author} ask{addition}</div>
+            <div className='question-container'>
+                <img
+                    src={avatar}
+                    alt={`Avatar of ${author}`}
+                    className='avatar-question'
+                />
+                <div className='vertical-line'>
+                </div>
+                <div className='question-info'>
+                    <p><b>Would you rather</b></p>
+                    <p>{option1}</p>
+                    <Link to={`/question/${id}`}
+                          className='btn'>
+                        View Poll
+                    </Link>
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
-function mapStateToProps ({questions, users}, { id, answered }) {
+function mapStateToProps({questions, users}, {id, answered}) {
     const question = questions[id]
-
     return {
         question: question
             ? formatQuestionOverview(question, users[question.author])

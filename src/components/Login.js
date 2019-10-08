@@ -63,11 +63,10 @@ class Login extends Component {
 }
 
 function mapStateToProps({users, authedUser}) {
-
-    const options =
-        Object.keys(users).map(user => {
-            return {value: users[user].id, label: users[user].name}
-        })
+    const options = Object.values(users).map(({ id, name }) => ({
+        value: id,
+        label: name
+    }));
     return {
         authedUser,
         options

@@ -1,24 +1,22 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import UserScore from "./UserScore"
 
-class LeaderBoard extends Component {
-    render() {
-        const {sortedUserIds} = this.props
-        const winnerId = (sortedUserIds.length > 0) ? sortedUserIds[0] : "";
-        return (
-            <div className='board-container'>
-                <h3 className='center'>Score Board</h3>
-                <ul>
-                    {this.props.sortedUserIds.map((id) => (
-                        <li key={id}>
-                            <UserScore id={id} winnerId={winnerId}/>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        )
-    }
+const LeaderBoard = (props) => {
+    const {sortedUserIds} = props
+    const winnerId = (sortedUserIds.length > 0) ? sortedUserIds[0] : "";
+    return (
+        <div className='board-container'>
+            <h3 className='center'>Score Board</h3>
+            <ul>
+                {sortedUserIds.map((id) => (
+                    <li key={id}>
+                        <UserScore id={id} winnerId={winnerId}/>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )
 }
 
 function mapStateToProps({users}) {

@@ -1,20 +1,21 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
 class UserScore extends Component {
-
     render() {
-        const { user, answersCount, questionsCount, score, winnerId } = this.props
+        const {user, answersCount, questionsCount, score, winnerId} = this.props
 
         if (user === null) {
             return <p>This user doesn't exist</p>
         }
-        const { id, name, avatarURL } = user
+
+        const {id, name, avatarURL} = user
 
         return (
-            /*{<div className='score-container' data-winner={id===winnerId?'Winner':''}>} */
             <div className='score-container'>
-                { id === winnerId && ( <div className='ribbon-wrapper'><div className="ribbon">WINNER</div></div>)}
+                {id === winnerId && (<div className='ribbon-wrapper'>
+                    <div className="ribbon">WINNER</div>
+                </div>)}
                 <img
                     src={avatarURL}
                     alt={`Avatar of ${name}`}
@@ -40,11 +41,11 @@ class UserScore extends Component {
     }
 }
 
-function mapStateToProps ({users}, { id, winnerId }) {
+function mapStateToProps({users}, {id, winnerId}) {
     const user = users[id]
     const answersCount = Object.keys(user.answers).length
     const questionsCount = Object.keys(user.questions).length
-    const score =  answersCount + questionsCount
+    const score = answersCount + questionsCount
     return {
         user,
         answersCount,

@@ -9,18 +9,11 @@ class NewQuestion extends Component {
         textTwo: '',
         toHome: false,
     }
-    handleChangeOne = (e) => {
-        const textOne = e.target.value
-        this.setState(() => ({
-            textOne
-        }))
+
+    handleOptionChange = (e) => {
+        this.setState({[e.target.name]: e.target.value});
     }
-    handleChangeTwo = (e) => {
-        const textTwo = e.target.value
-        this.setState(() => ({
-            textTwo
-        }))
-    }
+
     handleSubmit = (e) => {
         e.preventDefault()
 
@@ -48,22 +41,22 @@ class NewQuestion extends Component {
                         <form className='new-question' onSubmit={this.handleSubmit}>
                             <h3>Would you rather...</h3>
                             <input
-                                name="optionOne"
+                                name="textOne"
                                 className="input"
                                 type="text"
                                 placeholder="Option One"
                                 value={textOne}
-                                onChange={this.handleChangeOne}
+                                onChange={this.handleOptionChange}
                                 maxLength={280}
                             />
                             <p className='center'>Or</p>
                             <input
-                                name="optionTwo"
+                                name="textTwo"
                                 className="input"
                                 type="text"
                                 placeholder="Option Two"
                                 value={textTwo}
-                                onChange={this.handleChangeTwo}
+                                onChange={this.handleOptionChange}
                                 maxLength={280}
                             />
                             <button
