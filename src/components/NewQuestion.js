@@ -18,8 +18,8 @@ class NewQuestion extends Component {
         e.preventDefault()
 
         const {textOne, textTwo} = this.state
-        const {dispatch} = this.props
-        dispatch(handleAddQuestion(textOne, textTwo))
+        const {handleSubmit} = this.props
+        handleSubmit(textOne, textTwo)
 
         this.setState(() => ({
             textOne: '',
@@ -73,10 +73,16 @@ class NewQuestion extends Component {
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return({
+        handleSubmit: (option1, option2) => {dispatch(handleAddQuestion(option1, option2))}
+    })
+}
+
 function mapStateToProps({users, authedUser}) {
     return {
         author: users[authedUser],
     }
 }
 
-export default connect(mapStateToProps)(NewQuestion)
+export default connect(mapStateToProps, mapDispatchToProps)(NewQuestion)

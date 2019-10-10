@@ -18,10 +18,10 @@ class Login extends Component {
 
     handleLogin = (e) => {
         e.preventDefault()
-        const {dispatch} = this.props
+        const {handleLogin} = this.props
         const {selectedOption} = this.state
         if (selectedOption !== "select") {
-            dispatch(setAuthedUser(selectedOption))
+            handleLogin(selectedOption)
             this.setState(() => ({
                 selectedOption: 'select',
                 redirectToReferrer: true,
@@ -63,6 +63,12 @@ class Login extends Component {
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return({
+        handleLogin: (userID) => {dispatch(setAuthedUser(userID))}
+    })
+}
+
 function mapStateToProps({users, authedUser}) {
     const options = Object.values(users).map(({ id, name }) => ({
         value: id,
@@ -74,4 +80,4 @@ function mapStateToProps({users, authedUser}) {
     }
 }
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
