@@ -10,8 +10,9 @@ import LeaderBoard from './LeaderBoard'
 import PageNotFound from './PageNotFound'
 import Login from './Login'
 import Nav from './Nav'
-import users from "../reducers/users";
-import questions from "../reducers/questions";
+import users from '../reducers/users'
+import questions from '../reducers/questions'
+import PrivateRoute from './PrivateRoute'
 
 class App extends Component {
     componentDidMount() {
@@ -27,19 +28,17 @@ class App extends Component {
                         <Nav/>
                         {this.props.loading === true
                             ? null
-                            : this.props.authedUser === null
-                                ? <Login/>
-                                : <div>
-                                    <Switch>
-                                        <Route path='/' exact component={Dashboard}/>
-                                        <Route path='/question/:id' exact component={Question}/>
-                                        <Route path='/add' exact component={NewQuestion}/>
-                                        <Route path='/leaderboard' exact component={LeaderBoard}/>
-                                        <Route path='/login' exact component={Login}/>
-                                        <Route path='/pageNotFound' exact component={PageNotFound}/>
-                                        <Route path='/*' component={PageNotFound}/>
-                                    </Switch>
-                                </div>
+                            : <div>
+                                <Switch>
+                                    <PrivateRoute path='/' exact component={Dashboard}/>
+                                    <PrivateRoute path='/question/:id' exact component={Question}/>
+                                    <PrivateRoute path='/add' exact component={NewQuestion}/>
+                                    <PrivateRoute path='/leaderboard' exact component={LeaderBoard}/>
+                                    <Route path='/login' exact component={Login}/>
+                                    <Route path='/pageNotFound' exact component={PageNotFound}/>
+                                    <PrivateRoute path='/*' component={PageNotFound}/>
+                                </Switch>
+                            </div>
                         }
                     </div>
                 </Fragment>

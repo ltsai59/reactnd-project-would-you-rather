@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {formatQuestionOverview} from "../utilis/helpers"
-import {Link, withRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 const QuestionOverview = ({question, id, answered}) => {
     if (question === null) {
@@ -50,4 +50,4 @@ function mapStateToProps({questions, users}, {id, answered}) {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(QuestionOverview))
+export default connect(mapStateToProps)(QuestionOverview)

@@ -12,27 +12,27 @@ class Nav extends Component {
     }
 
     render() {
-        const {username} = this.props
+        const {username, authedUser} = this.props
         return (
             <nav className='nav'>
                 <ul>
-                    {username !== null && (
-                        <Fragment>
-                            <li>
-                                <NavLink to='/' exact activeClassName='active'>
-                                    Home
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/add' activeClassName='active'>
-                                    New Question
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/leaderboard' activeClassName='active'>
-                                    Leader Board
-                                </NavLink>
-                            </li>
+                    <li>
+                        <NavLink to='/' exact activeClassName='active'>
+                            Home
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/add' activeClassName='active'>
+                            New Question
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/leaderboard' activeClassName='active'>
+                            Leader Board
+                        </NavLink>
+                    </li>
+                    {authedUser !== null ?
+                        (<Fragment>
                             <li>
                                 Hello! {username} &nbsp;
                             </li>
@@ -41,9 +41,12 @@ class Nav extends Component {
                                     Log out
                                 </button>
                             </li>
-                        </Fragment>
+                        </Fragment>)
+                        : (
+                            <li>You are not logged in.</li>
 
-                    )}
+                        )
+                    }
                 </ul>
             </nav>
         )
@@ -53,7 +56,8 @@ class Nav extends Component {
 function mapStateToProps({users, authedUser}) {
     const user = users[authedUser]
     return {
-        username: user ? user.name : null
+        username: user ? user.name : null,
+        authedUser
     }
 }
 
